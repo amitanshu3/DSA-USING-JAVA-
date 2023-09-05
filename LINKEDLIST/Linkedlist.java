@@ -36,7 +36,7 @@ public class Linkedlist{
         size++;
         if(head==null)
          {
-            System.out.println("sorry the linkedlist is empty");
+            head=tail=newnode;
             return;
          }
          tail.next=newnode;
@@ -262,7 +262,7 @@ public class Linkedlist{
         size++;
         if(head==null)
          {
-            System.out.println("sorry the linkedlist is empty");
+            head=tail=newnode;
             return;
          }
          tail.next=newnode;
