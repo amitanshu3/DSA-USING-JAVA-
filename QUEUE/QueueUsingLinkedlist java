@@ -1,0 +1,83 @@
+public class QueueUsingLinkedlist {
+    // Define a Node class to represent individual elements of the queue
+    class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    Node head; // Points to the front of the queue
+    Node tail; // Points to the rear of the queue
+
+    // Method to enqueue (add) an element to the rear of the queue
+    public void enqueue(int data) {
+        Node newnode = new Node(data); // Create a new node with the given data
+        if (isEmpty()) {
+            // If the queue is empty, set both head and tail to the new node
+            head = tail = newnode;
+            return;
+        }
+        tail.next = newnode; // Link the current tail to the new node
+        tail = newnode; // Update the tail to be the new node
+    }
+
+    // Method to dequeue (remove) an element from the front of the queue
+    public int dequeue() {
+        if (isEmpty()) {
+            System.out.println("Sorry, the queue is empty");
+            return -1;
+        }
+        int value = head.data; // Get the data from the front node
+        if (head == tail) {
+            // If there is only one element in the queue, set both head and tail to null
+            head = tail = null;
+            return value;
+        }
+        head = head.next; // Update the head to the next node in the queue
+        return value;
+    }
+
+    // Method to peek at (view) the element at the front of the queue without removing it
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("Sorry, the queue is empty and you cannot peek an element");
+            return -1;
+        }
+        return head.data; // Return the data of the front node
+    }
+
+    // Method to check if the queue is empty
+    public boolean isEmpty() {
+        return head == null; // If head is null, the queue is empty
+    }
+
+    // Method to display all elements in the queue
+    public void display() {
+        if (isEmpty()) {
+            System.out.println("Sorry, the queue is empty and cannot display elements");
+            return;
+        }
+        Node temp = head;
+        System.out.println("Displaying elements of the queue:");
+        while (temp != null) {
+            System.out.println(temp.data);
+            temp = temp.next; // Move to the next node in the queue
+        }
+    }
+
+    public static void main(String[] args) {
+        QueueUsingLinkedlist ob = new QueueUsingLinkedlist();
+        for (int i = 0; i < 5; i++) {
+            ob.enqueue(i); // Add elements to the queue
+        }
+        ob.display(); // Display the elements in the queue
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Dequeued value is " + ob.dequeue()); // Remove and print elements from the queue
+        }
+        ob.display(); // Display the elements in the queue after dequeuing
+    }
+}
