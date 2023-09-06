@@ -1,3 +1,50 @@
+To convert an infix expression to a postfix expression (also known as Reverse Polish Notation, RPN), you can follow these rules and steps:
+
+Rules:
+
+Operators have precedence levels, with higher precedence operators taking precedence over lower precedence operators.
+Infix expressions may have parentheses to indicate the order of evaluation. Operators inside parentheses are evaluated first.
+Operators may be left-associative (e.g., +, -, *, /) or right-associative (e.g., ^ for exponentiation).
+Steps:
+
+Initialize an empty stack to hold operators.
+Initialize an empty string or StringBuilder to store the postfix expression.
+Start scanning the infix expression from left to right.
+For each character in the infix expression:
+If it is an operand (a letter or digit), append it to the postfix expression.
+If it is an operator:
+If the stack is empty or contains an opening parenthesis '(', push the operator onto the stack.
+If the operator has higher precedence than the operator at the top of the stack, push it onto the stack.
+If the operator has lower or equal precedence, pop operators from the stack and append them to the postfix expression until you reach an operator with lower precedence or an opening parenthesis. Then push the current operator onto the stack.
+If it is an opening parenthesis '(', push it onto the stack.
+If it is a closing parenthesis ')', pop operators from the stack and append them to the postfix expression until you reach an opening parenthesis '('. Pop and discard the opening parenthesis from the stack.
+After processing all characters, pop any remaining operators from the stack and append them to the postfix expression.
+The resulting string is the postfix expression
+
+
+
+
+
+
+
+
+
+
+CODE-----------------------------------------------------------------------------------------------------------------------------BELOW----------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import java.util.*;
 
 class Solution {
@@ -26,7 +73,7 @@ class Solution {
                 // If an operator is encountered, pop and append operators from the stack to the output
                 // while they have higher or equal precedence compared to the current operator, then push
                 // the current operator onto the stack.
-                while (!s.isEmpty() && precedence(c) <= precedence(s.peek())) {
+                while (!s.isEmpty() && precedence(c) <= precedence(s.peek())&&(c!='^'&&s.peek()!='^')){
                     sb.append(s.pop());
                 }
                 s.push(c); // Push the current operator onto the stack.
